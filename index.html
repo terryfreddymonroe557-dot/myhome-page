@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ayodeji Jolansinmi – Portfolio</title>
+
+<link rel="icon" type="image/png" href="favicon.png">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Playfair+Display:wght@600&display=swap" rel="stylesheet">
+
+<style>
+
+:root {
+    --bg: #f7f7f7;
+    --text: #222;
+    --accent: #6f4cff;
+    --card: #fff;
+    --nav: rgba(20,20,20,0.65);
+    --gradient: linear-gradient(135deg,#1e1e1e,#444);
+
+    --dark-bg: #0a0a0a;
+    --dark-text: #eaeaea;
+    --dark-card: rgba(255,255,255,0.08);
+    --dark-nav: rgba(0,0,0,0.85);
+}
+
+body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Poppins', sans-serif;
+    scroll-behavior: smooth;
+    transition: 0.4s ease;
+}
+
+.fade-up {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: 0.9s ease;
+}
+.fade-up.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    padding: 18px 40px;
+    background: var(--nav);
+    backdrop-filter: blur(14px);
+    color: white;
+    z-index: 1000;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 24px;
+    font-family: 'Playfair Display', serif;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    margin-left: 20px;
+}
+
+.hero {
+    height: 100vh;
+    padding: 160px 50px 100px;
+    background: var(--gradient);
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.hero h2 {
+    font-size: 45px;
+}
+
+#typing {
+    margin-top: 10px;
+    font-size: 20px;
+}
+
+.hero-img img {
+    width: 250px;
+    border-radius: 50%;
+}
+
+section {
+    max-width: 900px;
+    margin: auto;
+    padding: 80px 40px;
+}
+
+.project {
+    background: var(--card);
+    padding: 20px;
+    margin: 20px 0;
+    border-radius: 10px;
+}
+
+footer {
+    background: #111;
+    color: white;
+    padding: 20px;
+    text-align: center;
+}
+
+.dark {
+    background: var(--dark-bg);
+    color: var(--dark-text);
+}
+
+</style>
+</head>
+
+<body>
+
+<header>
+    <h1>Ayodeji Jolansinmi</h1>
+    <nav>
+        <a href="#home">Home</a>
+        <a href="#about">About</a>
+        <a href="#skills">Skills</a>
+        <a href="#projects">Projects</a>
+        <a href="#contact">Contact</a>
+    </nav>
+</header>
+
+<section id="home" class="hero">
+    <div>
+        <h2>Hi, I'm <span style="color:#6f4cff;">Ayodeji Jolansinmi</span></h2>
+        <div id="typing"></div>
+    </div>
+
+    <div class="hero-img">
+        <img src="profile.jpg" alt="Profile">
+    </div>
+</section>
+
+<section id="about" class="fade-up">
+    <h2>About Me</h2>
+    <p>
+        I am Ayodeji Jolansinmi, a passionate tech enthusiast with a strong interest in cybersecurity and digital innovation. 
+        I enjoy exploring systems, identifying vulnerabilities, and building secure solutions.
+
+        I have worked on personal tech projects focused on problem-solving and automation. 
+        My goal is to become a professional cybersecurity expert.
+    </p>
+</section>
+
+<section id="skills" class="fade-up">
+    <h2>Skills</h2>
+    <ul>
+        <li>Cybersecurity Basics</li>
+        <li>Problem Solving</li>
+        <li>System Analysis</li>
+        <li>Basic Programming</li>
+        <li>Digital Security Awareness</li>
+    </ul>
+</section>
+
+<section id="projects" class="fade-up">
+    <h2>Projects</h2>
+
+    <div class="project">
+        <h3>Security Awareness Project</h3>
+        <p>Educating users on how to protect themselves from cyber threats.</p>
+    </div>
+
+    <div class="project">
+        <h3>Automation Scripts</h3>
+        <p>Created scripts to automate simple tasks.</p>
+    </div>
+
+    <div class="project">
+        <h3>Portfolio Website</h3>
+        <p>Built a personal website to showcase my skills.</p>
+    </div>
+</section>
+
+<section id="contact" class="fade-up">
+    <h2>Contact</h2>
+    <p>
+        Email: ayodeji0135@cosmopolitan.edu.ng<br>
+        Phone: +234 704 188 4070
+    </p>
+</section>
+
+<footer>
+    © 2026 Ayodeji Jolansinmi
+</footer>
+
+<script>
+
+const text = ["Cybersecurity Enthusiast", "Tech Explorer", "Future Security Expert"];
+let i = 0, j = 0;
+
+function type() {
+    document.getElementById("typing").innerHTML = text[i].substring(0, j);
+    if (j++ < text[i].length) {
+        setTimeout(type, 100);
+    } else {
+        j = 0;
+        i = (i + 1) % text.length;
+        setTimeout(type, 1000);
+    }
+}
+type();
+
+const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add("visible");
+        }
+    });
+});
+
+document.querySelectorAll(".fade-up").forEach(el => observer.observe(el));
+
+</script>
+
+</body>
+</html>
